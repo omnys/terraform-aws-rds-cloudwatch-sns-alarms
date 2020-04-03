@@ -50,3 +50,8 @@ variable "swap_usage_threshold" {
 
   # 256 Megabyte in Byte
 }
+
+variable "sns_arn" {
+  description = "The SNS ARN to be used"
+  type = "string"
+}
