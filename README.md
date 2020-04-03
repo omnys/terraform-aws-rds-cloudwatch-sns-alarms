@@ -14,7 +14,7 @@ Create a set of sane RDS CloudWatch alerts for monitoring the health of an RDS i
 
 ---
 
-This project is part of our comprehensive ["SweetOps"](https://docs.cloudposse.com) approach towards DevOps. 
+This project is part of our comprehensive ["SweetOps"](https://docs.cloudposse.com) approach towards DevOps.
 
 
 It's 100% Open Source and licensed under the [APACHE2](LICENSE).
@@ -50,7 +50,7 @@ It's 100% Open Source and licensed under the [APACHE2](LICENSE).
 See the [`examples/`](examples/) directory for working examples.
 
 ```hcl
-resource "aws_db_instance" "default" {
+resource aws_db_instance default {
   allocated_storage    = 10
   storage_type         = "gp2"
   engine               = "mysql"
@@ -65,9 +65,15 @@ resource "aws_db_instance" "default" {
   skip_final_snapshot  = "true"
 }
 
+resource aws_sns_topic db {
+  name = "db"
+  display_name = "RDS"
+}
+
 module "rds_alarms" {
   source         = "git::https://github.com/cloudposse/terraform-aws-rds-cloudwatch-sns-alarms.git?ref=tags/0.1.5"
-  db_instance_id = "${aws_db_instance.default.id}"
+  db_instance_id = aws_db_instance.default.id
+  sns_arn        = aws_sns_topic.db.arn
 }
 ```
 
@@ -86,12 +92,6 @@ module "rds_alarms" {
 | free_storage_space_threshold | The minimum amount of available storage space in Byte. | string | `2000000000` | no |
 | freeable_memory_threshold | The minimum amount of available random access memory in Byte. | string | `64000000` | no |
 | swap_usage_threshold | The maximum amount of swap space used on the DB instance in Byte. | string | `256000000` | no |
-
-## Outputs
-
-| Name | Description |
-|------|-------------|
-| sns_topic_arn | The ARN of the SNS topic |
 
 ## Makefile Targets
 ```
@@ -126,9 +126,9 @@ File a GitHub [issue](https://github.com/cloudposse/terraform-aws-rds-cloudwatch
 
 ## Commercial Support
 
-Work directly with our team of DevOps experts via email, slack, and video conferencing. 
+Work directly with our team of DevOps experts via email, slack, and video conferencing.
 
-We provide [*commercial support*][commercial_support] for all of our [Open Source][github] projects. As a *Dedicated Support* customer, you have access to our team of subject matter experts at a fraction of the cost of a full-time engineer. 
+We provide [*commercial support*][commercial_support] for all of our [Open Source][github] projects. As a *Dedicated Support* customer, you have access to our team of subject matter experts at a fraction of the cost of a full-time engineer.
 
 [![E-Mail](https://img.shields.io/badge/email-hello@cloudposse.com-blue.svg)](mailto:hello@cloudposse.com)
 
@@ -138,7 +138,7 @@ We provide [*commercial support*][commercial_support] for all of our [Open Sourc
 - **Bug Fixes.** We'll rapidly work to fix any bugs in our projects.
 - **Build New Terraform Modules.** We'll develop original modules to provision infrastructure.
 - **Cloud Architecture.** We'll assist with your cloud strategy and design.
-- **Implementation.** We'll provide hands-on support to implement our reference architectures. 
+- **Implementation.** We'll provide hands-on support to implement our reference architectures.
 
 
 ## Community Forum
@@ -172,9 +172,9 @@ Copyright © 2017-2018 [Cloud Posse, LLC](https://cloudposse.com)
 
 
 
-## License 
+## License
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) 
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 See [LICENSE](LICENSE) for full details.
 
@@ -240,5 +240,3 @@ Check out [our other projects][github], [apply for a job][jobs], or [hire us][hi
   [Jamie-BitFlight_avatar]: https://github.com/Jamie-BitFlight.png?size=150
   [osterman_homepage]: https://github.com/osterman
   [osterman_avatar]: https://github.com/osterman.png?size=150
-
-
