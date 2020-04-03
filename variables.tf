@@ -5,7 +5,7 @@ variable "db_instance_id" {
 
 variable "burst_balance_threshold" {
   description = "The minimum percent of General Purpose SSD (gp2) burst-bucket I/O credits available."
-  type        = "tring
+  type        = string
   default     = 20
 }
 
