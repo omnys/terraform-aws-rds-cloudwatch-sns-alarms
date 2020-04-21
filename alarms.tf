@@ -29,7 +29,7 @@ resource "aws_cloudwatch_metric_alarm" "burst_balance_too_low" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "cpu_utilization_too_high" {
-  count = monitor_cpu_utilization ? 1 : 0
+  count = var.monitor_cpu_utilization ? 1 : 0
 
   alarm_name          = "${var.db_instance_id}_cpu_utilization_too_high"
   comparison_operator = "GreaterThanThreshold"
