@@ -15,6 +15,24 @@ variable "cpu_utilization_threshold" {
   default     = 80
 }
 
+variable "cpu_utilization_evaluation_periods" {
+  description = "The evaluation periods of CPU utilization."
+  type        = string
+  default     = 1
+}
+
+variable "cpu_utilization_period" {
+  description = "The period of CPU utilization."
+  type        = string
+  default     = 600
+}
+
+variable "monitor_cpu_utilization" {
+  description = "Enable cpu utilization monitoring"
+  type = bool
+  default = true
+}
+
 variable "cpu_credit_balance_threshold" {
   description = "The minimum number of CPU credits (t2 instances only) available."
   type        = string

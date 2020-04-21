@@ -29,15 +29,17 @@ resource "aws_cloudwatch_metric_alarm" "burst_balance_too_low" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "cpu_utilization_too_high" {
+  count = monitor_cpu_utilization ? 1 : 0
+
   alarm_name          = "${var.db_instance_id}_cpu_utilization_too_high"
   comparison_operator = "GreaterThanThreshold"
-  evaluation_periods  = "1"
+  evaluation_periods  = var.cpu_utilization_evaluation_periods
   metric_name         = "CPUUtilization"
   namespace           = "AWS/RDS"
-  period              = "600"
+  period              = var.cpu_utilization_period
   statistic           = "Average"
   threshold           = local.thresholds["CPUUtilizationThreshold"]
-  alarm_description   = "Average database CPU utilization over last 10 minutes too high"
+  alarm_description   = "Average database CPU utilization over last ${var.cpu_utilization_period} seconds too high"
   alarm_actions       = ["${var.sns_arn}"]
   ok_actions          = ["${var.sns_arn}"]
 
