@@ -85,6 +85,7 @@ module "rds_alarms" {
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | burst_balance_threshold | The minimum percent of General Purpose SSD (gp2) burst-bucket I/O credits available. | string | `20` | no |
+| monitor_burst_balance | Enable or disable burst balance monitor. | bool | true | no |
 | cpu_credit_balance_threshold | The minimum number of CPU credits (t2 instances only) available. | string | `20` | no |
 | monitor_cpu_utilization | Enable or disable cpu utilization monitor. | bool | true | no |
 | cpu_utilization_threshold | The maximum percentage of CPU utilization. | string | `80` | no |

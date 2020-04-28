@@ -11,6 +11,8 @@ locals {
 }
 
 resource "aws_cloudwatch_metric_alarm" "burst_balance_too_low" {
+  count = var.monitor_burst_balance ? 1 : 0
+
   alarm_name          = "${var.db_instance_id}_burst_balance_too_low"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = "1"
