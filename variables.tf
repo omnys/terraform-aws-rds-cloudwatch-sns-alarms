@@ -39,6 +39,12 @@ variable "monitor_cpu_utilization" {
   default = true
 }
 
+variable "monitor_cpu_credit_balance" {
+  description = "Enable cpu credit balance monitoring"
+  type = bool
+  default = true
+}
+
 variable "cpu_credit_balance_threshold" {
   description = "The minimum number of CPU credits (t2 instances only) available."
   type        = string

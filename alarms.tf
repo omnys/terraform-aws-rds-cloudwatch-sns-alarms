@@ -51,6 +51,8 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_too_high" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "cpu_credit_balance_too_low" {
+  count = var.monitor_cpu_credit_balance ? 1 : 0
+
   alarm_name          = "${var.db_instance_id}_cpu_credit_balance_too_low"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = "1"

@@ -88,6 +88,7 @@ module "rds_alarms" {
 | monitor_burst_balance | Enable or disable burst balance monitor. | bool | true | no |
 | cpu_credit_balance_threshold | The minimum number of CPU credits (t2 instances only) available. | string | `20` | no |
 | monitor_cpu_utilization | Enable or disable cpu utilization monitor. | bool | true | no |
+| monitor_cpu_credit_balance | Enable or disable cpu credit balance monitor. | bool | true | no |
 | cpu_utilization_threshold | The maximum percentage of CPU utilization. | string | `80` | no |
 | cpu_utilization_evaluation_periods | The number of evaluation periods of CPU utilization. | string | `1` | no |
 | cpu_utilization_period | The period in seconds of CPU utilization. | string | `600` | no |
